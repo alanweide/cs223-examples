@@ -1,7 +1,7 @@
 CC=gcc
 CFLAGS=-std=c99 -Wall -pedantic -g
 
-Pointers: pointers.c array_initializers.c
+Pointers: pointers.c array_initializers.c array_helpers.c
 	${CC} -o $@ ${CFLAGS} $^
 
 Stackvars: stackvars.c array_initializers.c

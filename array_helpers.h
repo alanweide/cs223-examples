@@ -3,7 +3,6 @@
 
 #include <stdlib.h>
 
-int median_of_intsa(int nums[], size_t len);
-int median_of_intsp(int* nums, size_t len);
+int median_of_ints(int* nums, size_t len);
 
 #endif
