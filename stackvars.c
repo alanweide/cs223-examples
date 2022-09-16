@@ -9,6 +9,8 @@ int main() {
     if (x < 100) {
         double arr[x];
         initialize_double_array(arr, x, 0);
-        printf("%lf\n", arr[0]);
     }
+    
+    // Won't compile - why?
+    printf("%lf\n", arr[0]);
 }
