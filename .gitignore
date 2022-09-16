@@ -1,4 +1,6 @@
+# VS Code
 .vscode
+*.code-profile
 
 # Prerequisites
 *.d
