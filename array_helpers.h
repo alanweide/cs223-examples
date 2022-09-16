@@ -3,6 +3,13 @@
 
 #include <stdlib.h>
 
-int median_of_ints(int nums[], size_t len);
+// Returns an int array of length len, with each element having been initalized to def
+int* array_with_default(int def, size_t len);
+
+// Returns the median of the first len elements of array nums
+int median_of_ints(int* nums, size_t len);
+
+// Prints the first len elements of array arr
+void print_arr(int* arr, size_t len);
 
 #endif

@@ -4,13 +4,7 @@
 #include <stdlib.h>
 #include "array_initializers.h"
 
-void initialize_double_array(double arr[], size_t len, double def) {
-    for (size_t i = 0; i < len; i++) {
-        arr[i] = def;
-    }
-}
-
-void initialize_int_array(int arr[], size_t len, int def) {
+void initialize_array(int* arr, size_t len, int def) {
     for (size_t i = 0; i < len; i++) {
         arr[i] = def;
     }

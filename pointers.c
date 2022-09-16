@@ -9,5 +9,5 @@ int main() {
         arr[i] = i * 3;
     }
     printf("%d\n", arr);
-    arr = malloc(sizeof(int) * 8);
+    arr = malloc(sizeof(int)*8);
 }
