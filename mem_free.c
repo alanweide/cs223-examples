@@ -5,15 +5,17 @@
 
 int main() {
     size_t curidx = 0, curmax = 1;
-    int* arr = malloc(curmax * sizeof(int));
+    int* arr = calloc(curmax, sizeof(int));
 
     // Repeadedly reads from input until it finds a non-integral sequence of characters or EOF, storing each value read in succesive elements of arr
     for (size_t i = 0; ; i++) {
         if (curidx == curmax) {
-            malloc(4);
-            printf("0x%zx -> %zu\n", arr, curmax);
+            printf("0x%zx -> %zu\n", (size_t)arr, curmax);
+            int oldmax = curmax;
             curmax += 1;
-            arr = realloc(arr, curmax * sizeof(int));
+            int* newarr = calloc(curmax, sizeof(int));
+            arr_copy(newarr, arr, oldmax);
+            arr = newarr;
         }
         arr[curidx] = i;
         curidx++;

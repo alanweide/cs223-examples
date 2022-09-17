@@ -20,3 +20,7 @@ mem_free.o : mem_free.c array_helpers.c
 
 clean:
 	rm -f Pointers ArrayMedian Stackvars
+	rm -f *.o
+
+# instrument_mem_free : mem_free.O
+# 	pid=${`}./mem_free > /dev/null & | top -stats pid,command,cpu,

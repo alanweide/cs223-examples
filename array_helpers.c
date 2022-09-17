@@ -48,4 +48,10 @@ int* array_with_default(int def, size_t len) {
     return arr;
 }
 
+void arr_copy(int* dest, int* src, size_t len) {
+    for (size_t i = 0; i < len; i++) {
+        dest[i] = src[i];
+    }
+}
+
 #endif

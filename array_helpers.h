@@ -12,4 +12,7 @@ int median_of_ints(int* nums, size_t len);
 // Prints the first len elements of array arr
 void print_arr(int* arr, size_t len);
 
+// Copies the first len elements from array src to dest
+void arr_copy(int* dest, int* src, size_t len);
+
 #endif
