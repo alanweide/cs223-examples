@@ -5,7 +5,7 @@
 
 int main() {
     size_t curidx = 0, curmax = 1;
-    int* arr = calloc(curmax, sizeof(int));
+    int* arr = malloc(curmax * sizeof(int));
 
     // Repeadedly reads from input until it finds a non-integral sequence of characters or EOF, storing each value read in succesive elements of arr
     for (size_t i = 0; ; i++) {
@@ -13,7 +13,7 @@ int main() {
             printf("0x%zx -> %zu\n", (size_t)arr, curmax);
             int oldmax = curmax;
             curmax += 1;
-            int* newarr = calloc(curmax, sizeof(int));
+            int* newarr = malloc(curmax * sizeof(int));
             arr_copy(newarr, arr, oldmax);
             arr = newarr;
         }
