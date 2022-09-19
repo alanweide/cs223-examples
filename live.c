@@ -15,7 +15,7 @@ int main() {
 
     printf("int* arrp;\n");
     fgetc(stdin);
-    int* arrp;
+    int* arrp = malloc(sizeof(int));
     printvar(arrp, "arrp");
 
     printf("arr[0] = x;\n");
