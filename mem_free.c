@@ -8,7 +8,7 @@ int main() {
     int* arr = calloc(curmax, sizeof(int));
 
     // Repeadedly reads from input until it finds a non-integral sequence of characters or EOF, storing each value read in succesive elements of arr
-    for (size_t i = 0; ; i++) {
+    for (size_t i = 0; i < 10000000; i++) {
         if (curidx == curmax) {
             printf("0x%zx -> %zu\n", (size_t)arr, curmax);
             int oldmax = curmax;
