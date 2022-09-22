@@ -1,26 +1,53 @@
 CC=gcc
-CFLAGS=-std=c99 -Wall -pedantic -g -O0
+CFLAGS=-std=c99 -Wall -pedantic -g
 
-Pointers : pointers.c array_initializers.c array_helpers.c
-	${CC} -o $@ ${CFLAGS} $^
+Structs : structs.o array_helpers.o dynamic_array.o
+	${CC} ${CFLAGS} -o $@ $^
 
-ArrayMedian : array_median.c array_initializers.c array_helpers.c
-	${CC} -o $@ ${CFLAGS} $^
+Resizer : resizing_array.c array_helpers.o
+	${CC} ${CFLAGS} -DRES_MAIN -o $@ $^
 
-Stackvars : stackvars.c array_initializers.c
-	${CC} -o $@ ${CFLAGS} $^
+ListDemoA : listdemo.c resizing_array.o array_helpers.o
+	${CC} ${CFLAGS} -o $@ $^
+
+ListDemoB : listdemo.c linked_list.o
+	${CC} ${CFLAGS} -o $@ $^
+
+Memfree : mem_free.o array_helpers.o
+	${CC} ${CFLAGS} -o $@ $^
+
+Pointers : pointers.o array_initializers.o array_helpers.o
+	${CC} ${CFLAGS} -o $@ $^
+
+Arraymedian : array_median.c array_initializers.o array_helpers.o
+	${CC} ${CFLAGS} -o $@ $^
+
+Stackvars : stackvars.c array_initializers.o
+	${CC} ${CFLAGS} -o $@ $^
 
 Live :
 	rm -f $@
-	${CC} -o $@ ${CFLAGS} $^
+	${CC} ${CFLAGS} -o $@ $^
 	./$@
 
-mem_free.o : mem_free.c array_helpers.c
-	${CC} -o $@ ${CFLAGS} $^
+structs.o : array_helpers.h
+
+array_helpers.o : array_helpers.c array_helpers.h
+
+dynamic_array.o : dynamic_array.c dynamic_array.h
+
+resizing_array.o : resizing_array.c list.h
+
+linked_list.o : linked_list.c list.h
+
+mem_free.o : mem_free.c array_helpers.o
+
+stackvars.o : stackvars.c array_initializers.o
+
+array_initializers.o : array_initializers.c array_initializers.h
+
+all: Structs Resizer Memfree Pointers Arraymedian Stackvars ListDemoA ListDemoB
 
 clean:
-	rm -f Pointers ArrayMedian Stackvars
+	rm -f Structs Resizer Memfree Pointers Arraymedian Stackvars ListDemoA ListDemoB
 	rm -f *.o
-
-# instrument_mem_free : mem_free.O
-# 	pid=${`}./mem_free > /dev/null & | top -stats pid,command,cpu,

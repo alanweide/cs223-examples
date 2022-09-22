@@ -4,5 +4,6 @@
 import sys
 from random import randrange
 
+print(int(sys.argv[1]))
 for _ in range(int(sys.argv[1])):
-    print(randrange(100))
+    print(randrange(-100,100))

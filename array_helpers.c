@@ -1,7 +1,6 @@
 #ifndef _ARRAY_HELPERS_C
 #define _ARRAY_HELPERS_C
 
-#include <unistd.h>
 #include <stdio.h>
 #include "array_helpers.h"
 
@@ -16,7 +15,7 @@ int intcmp(const void *p, const void *q) {
     }
 }
 
-void sort_ints(int *nums, size_t len) {
+void sort_ints(int* nums, size_t len) {
     qsort(nums, len, sizeof(int), intcmp);
 }
 
@@ -29,19 +28,16 @@ int median_of_ints(int* nums, size_t len) {
     }
 }
 
-void print_arr(int *arr, size_t len) {
-    printf("0x%zx -> {", (size_t)arr);
+void print_arr(int* arr, size_t len, char* color) {
+    printf("\033[%sm%p->{ ", color, (void*)arr);
     for (size_t i = 0; i < len; i++) {
-        if (i > 0) {
-            printf(",");
-        }
-        printf("%d", arr[i]);
+        printf("%d ", arr[i]);
     }
-    printf("}\n");
+    printf("}\033[0m\n");
 }
 
 int* array_with_default(int def, size_t len) {
-    int* arr = malloc(len * sizeof(int));
+    int* arr = calloc(len, sizeof(int));
     for (size_t i = 0; i < len; i++) {
         arr[i] = def;
     }
