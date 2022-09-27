@@ -26,7 +26,7 @@ size_t length(List lst) {
     size_t len = 0;
     Node node = lst->head;
     while (node != NULL) {
-        node = head->next;
+        node = node->next;
         len++;
     }
     return len;
@@ -69,11 +69,11 @@ void printn(Node node) {
 }
 
 void printl(List lst) {
-    printf("%p->{ ", (void*)lst);
+    printf("%p->[ ", (void*)lst);
     if (lst->head != NULL) {
         printn(lst->head);
     }
-    printf("}\n");
+    printf("]\n");
 }
 
 #endif

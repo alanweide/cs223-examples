@@ -29,11 +29,11 @@ int median_of_ints(int* nums, size_t len) {
 }
 
 void print_arr(int* arr, size_t len) {
-    printf("%p->{ ", (void*)arr);
+    printf("%p->[ ", (void*)arr);
     for (size_t i = 0; i < len; i++) {
         printf("%d ", arr[i]);
     }
-    printf("}\n");
+    printf("]\n");
 }
 
 void print_arr_colors(int* arr, size_t len, char* color) {

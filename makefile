@@ -7,6 +7,9 @@ Structs : structs.o dynamic_array.o array_helpers.o
 Structs_L : structs.o linked_list.o
 	${CC} ${CFLAGS} -o $@ $^
 
+Structs_L2 : structs.o linked_list_2.o
+	${CC} ${CFLAGS} -o $@ $^
+
 Resizer : resizing_array.c array_helpers.o
 	${CC} ${CFLAGS} -DRES_MAIN -o $@ $^
 
@@ -42,6 +45,8 @@ dynamic_array.o : dynamic_array.c dynamic_array.h array_helpers.o
 resizing_array.o : resizing_array.c list.h
 
 linked_list.o : linked_list.c list.h
+
+linked_list_2.o : linked_list_2.c list.h
 
 mem_free.o : mem_free.c array_helpers.o
 
