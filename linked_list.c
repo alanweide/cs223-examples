@@ -24,9 +24,9 @@ List create_list() {
 
 size_t length(List lst) {
     size_t len = 0;
-    Node head = lst->head;
-    while (head != NULL) {
-        head = head->next;
+    Node node = lst->head;
+    while (node != NULL) {
+        node = head->next;
         len++;
     }
     return len;
