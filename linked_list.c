@@ -10,13 +10,13 @@ typedef struct node {
     struct node* next;
 } *Node;
 
-struct impl_s {
+struct implementation {
     Node head;
     size_t curlen;
 };
 
-List createList() {
-    List lst = malloc(sizeof(struct impl_s));
+List create_list() {
+    List lst = malloc(sizeof(struct implementation));
     lst->head = NULL;
     lst->curlen = 0;
     return lst;
@@ -32,14 +32,14 @@ size_t length(List lst) {
     return len;
 }
 
-void addToEnd(List lst, int val) {
+void append(List lst, int val) {
     Node newHead = malloc(sizeof(struct node));
     newHead->payload = val;
     newHead->next = lst->head;
     lst->head = newHead;
 }
 
-int removeFromEnd(List lst) {
+int remove_last(List lst) {
     Node oldHead = lst->head;
     lst->head = oldHead->next;
     int val = oldHead->payload;
@@ -47,15 +47,17 @@ int removeFromEnd(List lst) {
     return val;
 }
 
-void destoryNode(Node node) {
+void destroy_node(Node node) {
     if (node->next != NULL) {
-        destoryNode(node->next);
+        destroy_node(node->next);
     }
     free(node);
 }
 
-void destoryList(List lst) {
-    destoryNode(lst->head);
+void destroy_list(List lst) {
+    if (lst->head != NULL) {
+        destroy_node(lst->head);
+    }
     free(lst);
 }
 
@@ -66,15 +68,12 @@ void printn(Node node) {
     printf("%d ", node->payload);
 }
 
-void printl(List lst, char* colors) {
-    printf("\033[%sm{ ", colors);
+void printl(List lst) {
+    printf("%p->{ ", (void*)lst);
     if (lst->head != NULL) {
         printn(lst->head);
     }
-    printf("}\033[0m");
+    printf("}\n");
 }
 
-void printLong(List lst, char* colors) {
-    printl(lst, colors);
-}
 #endif

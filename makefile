@@ -1,7 +1,10 @@
 CC=gcc
 CFLAGS=-std=c99 -Wall -pedantic -g
 
-Structs : structs.o array_helpers.o dynamic_array.o
+Structs : structs.o dynamic_array.o array_helpers.o
+	${CC} ${CFLAGS} -o $@ $^
+
+Structs_L : structs.o linked_list.o
 	${CC} ${CFLAGS} -o $@ $^
 
 Resizer : resizing_array.c array_helpers.o
@@ -34,7 +37,7 @@ structs.o : array_helpers.h
 
 array_helpers.o : array_helpers.c array_helpers.h
 
-dynamic_array.o : dynamic_array.c dynamic_array.h
+dynamic_array.o : dynamic_array.c dynamic_array.h array_helpers.o
 
 resizing_array.o : resizing_array.c list.h
 

@@ -4,27 +4,24 @@
 #include <stdlib.h>
 
 // Type of a list that can be appended to and removed from and manage memory allocation automatically
-typedef struct impl_s *List;
+typedef struct implementation *List;
 
 // Create a List
-List createList();
+List create_list();
 
 // Returns the number of elements in lst
 size_t length(List lst);
 
 // Adds val to the (right) end of lst
-void addToEnd(List lst, int val);
+void append(List lst, int val);
 
 // Removes an element from the (right) end of lst and returns it
-int removeFromEnd(List lst);
+int remove_last(List lst);
 
-// Frees the memory alllocated by lst
-void destroyList(List lst);
+// Frees the memory allocated by lst
+void destroy_list(List lst);
 
-// Prints the list with color options
-void printl(List lst, char* colors);
-
-// Prints the entire allocated list
-void printLong(List lst, char* colors);
+// Prints the list
+void printl(List lst);
 
 #endif

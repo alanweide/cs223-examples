@@ -13,4 +13,6 @@ void append(List arr, int val);
 
 void remove_last(List arr);
 
+void printl(List arr);
+
 #endif

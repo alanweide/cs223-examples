@@ -2,7 +2,12 @@
 #define _DYNAMIC_ARRAY_C
 
 #include <stdlib.h>
-#include "dynamic_array.h"
+// #include "dynamic_array.h"
+#include "list.h"
+#include "array_helpers.h"
+
+#define HIGHLIGHTED "1;7"
+#define FAINT "2"
 
 struct implementation  {
     size_t curlen;
@@ -18,7 +23,11 @@ List create_list() {
     return lst;
 }
 
-void append(DynamicArray arr, int val) {
+size_t length(List arr) {
+    return arr->curlen;
+}
+
+void append(List arr, int val) {
     if (arr->curlen >= arr->curmax) {
         arr->curmax *= 2;
         arr->a = realloc(arr->a, arr->curmax * sizeof(int));
@@ -27,12 +36,33 @@ void append(DynamicArray arr, int val) {
     arr->curlen++;
 }
 
-void remove_last(DynamicArray arr) {
+int remove_last(List arr) {
     arr->curlen--;
+    int last = arr->a[arr->curlen];
     if (arr->curlen < arr->curmax / 2) {
         arr->curmax /= 2;
         arr->a = realloc(arr->a, arr->curmax * sizeof(int));
     }
+    return last;
+}
+
+void destroy_list(List arr) {
+    free(arr->a);
+    free(arr);
+}
+
+void printl(List arr) {
+    // // Print the important part of the array
+    // printf("\033[%sm", HIGHLIGHTED);
+    // print_arr(arr->a, arr->curlen, HIGHLIGHTED);
+    // printf("\033[0m")
+
+    // // Print the entire allocated array
+    // printf("\033[%sm", FAINT);
+    // print_arr(arr->a, arr->curmax, FAINT);
+    // printf("\033[0m")
+
+    print_arr(arr->a, arr->curlen);
 }
 
 #endif
