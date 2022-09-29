@@ -21,8 +21,8 @@ List create_list() {
     return lst;
 }
 
-size_t length(List arr) {
-    return arr->curlen;
+bool is_empty(List arr) {
+    return arr->curlen == 0;
 }
 
 void append(List arr, int val) {

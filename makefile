@@ -1,7 +1,9 @@
 CC=gcc
 CFLAGS=-std=c99 -Wall -pedantic -g
 
-Structs : structs.o dynamic_array.o array_helpers.o
+Structs : Structs_A Structs_L Structs_L2
+
+Structs_A : structs.o dynamic_array.o array_helpers.o
 	${CC} ${CFLAGS} -o $@ $^
 
 Structs_L : structs.o linked_list.o

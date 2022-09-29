@@ -22,14 +22,8 @@ List create_list() {
     return lst;
 }
 
-size_t length(List lst) {
-    size_t len = 0;
-    Node node = lst->head;
-    while (node != NULL) {
-        node = node->next;
-        len++;
-    }
-    return len;
+bool is_empty(List lst) {
+    return lst->head == NULL;
 }
 
 void append(List lst, int val) {

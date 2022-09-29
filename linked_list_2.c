@@ -12,18 +12,16 @@ typedef struct node {
 
 struct implementation {
     Node head;
-    size_t curlen;
 };
 
 List create_list() {
     List lst = malloc(sizeof(struct implementation));
     lst->head = NULL;
-    lst->curlen = 0;
     return lst;
 }
 
-size_t length(List lst) {
-    return lst->curlen;
+bool is_empty(List lst) {
+    return lst->head == NULL;
 }
 
 // Returns a pointer to the last node in the list
@@ -40,13 +38,12 @@ void append(List lst, int val) {
     Node newTail = malloc(sizeof(struct node));
     newTail->payload = val;
     newTail->next = NULL;
-    if (lst->curlen == 0) {
+    if (is_empty(lst)) {
         lst->head = newTail;
     } else {
         Node oldTail = last(lst);
         oldTail->next = newTail;
     }
-    lst->curlen++;
 }
 
 // Returns a pointer to the second-to-last node in the list
@@ -64,7 +61,7 @@ Node second_to_last(List lst) {
 
 int remove_last(List lst) {
     Node oldTail;
-    if (lst->curlen == 1) {
+    if (lst->head->next == NULL) {
         oldTail = lst->head;
         lst->head = NULL;
     } else {
@@ -74,7 +71,6 @@ int remove_last(List lst) {
     }
     int val = oldTail->payload;
     free(oldTail);
-    lst->curlen--;
     return val;
 }
 

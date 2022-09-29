@@ -2,6 +2,7 @@
 #define _LIST_H
 
 #include <stdlib.h>
+#include <stdbool.h>
 
 // Type of a list that can be appended to and removed from and manage memory allocation automatically
 typedef struct implementation *List;
@@ -9,8 +10,8 @@ typedef struct implementation *List;
 // Create a List
 List create_list();
 
-// Returns the number of elements in lst
-size_t length(List lst);
+// Returns true iff there are no elements in lst
+bool is_empty(List lst);
 
 // Adds val to the (right) end of lst
 void append(List lst, int val);
