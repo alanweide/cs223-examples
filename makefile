@@ -1,7 +1,13 @@
 CC=gcc
 CFLAGS=-std=c99 -Wall -pedantic -g
 
-Structs : Structs_A Structs_L Structs_L2
+Queues : queue_client.o linked_list_2.o
+	${CC} ${CFLAGS} -o $@ $^
+
+Stacks : stack_client.o linked_list.o
+	${CC} ${CFLAGS} -o $@ $^
+
+Structs : Structs_A Structs_L Structs_L2 Structs_D
 
 Structs_A : structs.o dynamic_array.o array_helpers.o
 	${CC} ${CFLAGS} -o $@ $^
@@ -10,6 +16,9 @@ Structs_L : structs.o linked_list.o
 	${CC} ${CFLAGS} -o $@ $^
 
 Structs_L2 : structs.o linked_list_2.o
+	${CC} ${CFLAGS} -o $@ $^
+
+Structs_D : structs.o double_linked_list.o
 	${CC} ${CFLAGS} -o $@ $^
 
 Resizer : resizing_array.c array_helpers.o
@@ -38,7 +47,11 @@ Live :
 	${CC} ${CFLAGS} -o $@ $^
 	./$@
 
-structs.o : array_helpers.h
+structs.o : structs.c array_helpers.h
+
+queue_client.o : queue_client.c queue.h
+
+stack_client.o : stack_client.c stack.h
 
 array_helpers.o : array_helpers.c array_helpers.h
 
@@ -56,8 +69,7 @@ stackvars.o : stackvars.c array_initializers.o
 
 array_initializers.o : array_initializers.c array_initializers.h
 
-all: Structs Resizer Memfree Pointers Arraymedian Stackvars ListDemoA ListDemoB
+# all: Structs Resizer Memfree Pointers Arraymedian Stackvars ListDemoA ListDemoB
 
 clean:
-	rm -f Structs Resizer Memfree Pointers Arraymedian Stackvars ListDemoA ListDemoB
 	rm -f *.o

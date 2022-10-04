@@ -4,6 +4,7 @@
 #include <stdlib.h>
 #include <stdio.h>
 #include "list.h"
+#include "stack.h"
 
 typedef struct node {
     int payload;
@@ -22,8 +23,16 @@ List create_list() {
     return lst;
 }
 
+Stack create_stack() {
+    return (Stack)create_list();
+}
+
 bool is_empty(List lst) {
     return lst->head == NULL;
+}
+
+bool is_empty_s(Stack s) {
+    return is_empty((List)s);
 }
 
 void append(List lst, int val) {
@@ -33,12 +42,20 @@ void append(List lst, int val) {
     lst->head = newHead;
 }
 
+void push(Stack s, int val) {
+    append((List)s, val);
+}
+
 int remove_last(List lst) {
     Node oldHead = lst->head;
     lst->head = oldHead->next;
     int val = oldHead->payload;
     free(oldHead);
     return val;
+}
+
+int pop(Stack s) {
+    return remove_last((List)s);
 }
 
 void destroy_node(Node node) {
@@ -55,6 +72,10 @@ void destroy_list(List lst) {
     free(lst);
 }
 
+void destroy_stack(Stack s) {
+    destroy_list((List)s);
+}
+
 void printn(Node node) {
     if (node->next != NULL) {
         printn(node->next);
@@ -68,6 +89,10 @@ void printl(List lst) {
         printn(lst->head);
     }
     printf("]\n");
+}
+
+void print_s(Stack s) {
+    printl((List)s);
 }
 
 #endif

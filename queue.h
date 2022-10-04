@@ -1,7 +1,7 @@
 #ifndef _QUEUE_H
 #define _QUEUE_H
 
-#include <stbool.h>
+#include <stdbool.h>
 
 // A first-in, first-out sequence of ints.
 typedef struct implementation* Queue;

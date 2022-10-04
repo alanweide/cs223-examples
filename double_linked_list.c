@@ -4,6 +4,7 @@
 #include <stdlib.h>
 #include <stdio.h>
 #include "list.h"
+#include "stack.h"
 
 typedef struct node {
     int payload;
@@ -23,11 +24,20 @@ List create_list() {
     List lst = malloc(sizeof(dll_impl));
     lst->head = NULL;
     lst->tail = NULL;
+    return lst;
+}
+
+Stack create_stack() {
+    return (Stack)create_list();
 }
 
 // Returns true iff there are no elements in lst
 bool is_empty(List lst) {
     return lst->head == NULL;
+}
+
+bool is_empty_s(Stack s) {
+    return is_empty((List)s);
 }
 
 Node create_node(int val) {
@@ -51,6 +61,10 @@ void append(List lst, int val) {
     lst->tail = new_tail;
 }
 
+void push(Stack s, int val) {
+    append((List)s, val);
+}
+
 // Removes an element from the (right) end of lst and returns it
 // Requires there is at least one element in the list
 int remove_last(List lst) {
@@ -65,6 +79,10 @@ int remove_last(List lst) {
     }
     free(old_tail);
     return val;
+}
+
+int pop(Stack s) {
+    return remove_last((List)s);
 }
 
 void destroy_node(Node node) {
@@ -82,6 +100,10 @@ void destroy_list(List lst) {
     free(lst);
 }
 
+void destroy_stack(Stack s) {
+    destroy_list((List)s);
+}
+
 // Prints the list
 void printl(List lst) {
     Node node = lst->head;
@@ -91,6 +113,10 @@ void printl(List lst) {
         node = node->next;
     }
     printf("]\n");
+}
+
+void print_s(Stack s) {
+    printl((List)s);
 }
 
 #endif
